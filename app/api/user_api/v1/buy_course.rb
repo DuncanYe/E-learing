@@ -8,7 +8,7 @@ module UserApi
         requires :token, type: String, desc: "憑證"
         requires :course_id, type: Integer, desc: "課程ID"
       end
-      get :buy_course do
+      post :buy_course do
         # 要改成，錯誤的 Token，請重新登入拿取最新的 Token
         course_id = params['course_id']
 
