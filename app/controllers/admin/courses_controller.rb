@@ -11,7 +11,7 @@ class Admin::CoursesController < Admin::BaseController
   def create
    @course = Course.new(course_params)
     if @course.save
-      redirect_to admin_courses_path, notice: "新增商品完成"
+      redirect_to admin_courses_path, notice: "新增課程完成"
     else
       flash.now[:error] = @course.errors.full_messages.to_sentence
       render :new
@@ -25,10 +25,12 @@ class Admin::CoursesController < Admin::BaseController
   end
 
   def update
-  end
-
-
-  def destroy
+    if @course.update(course_params)
+      redirect_to admin_courses_path, notice: "更新課程完成"
+    else
+      flash.now[:error] = @course.errors.full_messages.to_sentence
+      render :new
+    end
   end
 
   private

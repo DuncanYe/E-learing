@@ -1,2 +1,4 @@
-<h1>Admin::Courses#edit</h1>
-<p>Find me in app/views/admin/courses/edit.html.erb</p>
+<h3 class="text-center"><%= "編輯課程: #{@course.name}"%></h3>
+
+<span><%= link_to '回後台首頁', admin_root_path %></span>
+<%= render "form", course: @course %>
