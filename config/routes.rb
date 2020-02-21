@@ -3,11 +3,14 @@ Rails.application.routes.draw do
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 
   root 'courses#index'
-  resource :courses
+  resources :courses, only: [:index]
+  resources :user_courses, only: [:index, :new, :create]
 
   namespace :admin, path: :make_backend_url_abstruse do
     root 'courses#index'
 
-    resource :courses
+    resources :courses
+    resources :orders
+    resources :user_courses, only: [:index, :edit, :update]
   end
 end
