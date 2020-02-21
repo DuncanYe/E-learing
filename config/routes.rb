@@ -9,5 +9,7 @@ Rails.application.routes.draw do
     root 'courses#index'
 
     resource :courses
+    resource :orders
+    resource :user_courses, only: [:index, :edit, :update]
   end
 end
