@@ -29,12 +29,11 @@ ActiveRecord::Schema.define(version: 2020_02_21_084708) do
     t.integer "price", null: false, comment: "價錢"
     t.string "currency", null: false, comment: "幣別"
     t.datetime "available_day", null: false, comment: "使用期限"
-    t.bigint "user_id"
     t.bigint "category_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["category_id"], name: "index_courses_on_category_id"
-    t.index ["user_id"], name: "index_courses_on_user_id"
   end
 
   create_table "user_courses", force: :cascade do |t|
@@ -66,7 +65,6 @@ ActiveRecord::Schema.define(version: 2020_02_21_084708) do
   end
 
   add_foreign_key "courses", "categories"
-  add_foreign_key "courses", "users"
   add_foreign_key "user_courses", "categories"
   add_foreign_key "user_courses", "courses"
   add_foreign_key "user_courses", "users"
