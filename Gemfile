@@ -41,6 +41,7 @@ gem 'devise', '~> 4.5'
 gem 'ffaker', '~> 2.10'
 gem 'rails-i18n'
 gem "pundit"
+gem 'aasm'
 
 # api
 gem 'grape', '~> 1.3'

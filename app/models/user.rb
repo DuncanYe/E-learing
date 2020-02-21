@@ -16,4 +16,9 @@ class User < ApplicationRecord
     role == "admin"
   end
 
+  def generate_authentication_token
+    self.authentication_token = Devise.friendly_token
+    self.save
+  end
+
 end
