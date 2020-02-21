@@ -40,6 +40,7 @@ ActiveRecord::Schema.define(version: 2020_02_21_084708) do
     t.datetime "end_at", null: false, comment: "結束時間"
     t.string "state", null: false, comment: "狀態"
     t.integer "amount", null: false, comment: "金額"
+    t.string "currency", null: false, comment: "幣別"
     t.text "note", comment: "備註"
     t.bigint "user_id"
     t.bigint "category_id"
