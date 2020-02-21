@@ -4,6 +4,8 @@ class Course < ApplicationRecord
 
   belongs_to :category
 
+  scope :avalible_courses, -> { where(state: ["available"])}
+
   enum currency: {
     tw: "tw",
     usa: "usa",

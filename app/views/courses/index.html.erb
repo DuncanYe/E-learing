@@ -1,2 +1,28 @@
-<h1>Courses#index</h1>
-<p>Find me in app/views/courses/index.html.erb</p>
+<table class="table table-hover">
+  <thead>
+    <tr>
+      <th>主題</th>
+      <th>類別</th>
+      <th>狀態</th>
+      <th>金額</th>
+      <th>幣別</th>
+      <th>幾天期限</th>
+      <th>描述</th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @courses.each do |course| %>
+    <tr>
+      <td><%= course.name %></td>
+      <td><%= course.category.name %></td>
+      <td><%= course.state %></td>
+      <td><%= course.price %></td>
+      <td><%= course.currency %></td>
+      <td><%= course.available_day %></td>
+      <td><%= course.desc %></td>
+    </tr>
+    <% end %>
+  </tbody>
+
+</table>
