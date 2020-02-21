@@ -4,6 +4,7 @@ Rails.application.routes.draw do
 
   root 'courses#index'
   resources :courses, only: [:index]
+  resources :user_courses, only: [:index, :new, :create]
 
   namespace :admin, path: :make_backend_url_abstruse do
     root 'courses#index'

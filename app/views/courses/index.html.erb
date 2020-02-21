@@ -8,6 +8,7 @@
       <th>幣別</th>
       <th>幾天期限</th>
       <th>描述</th>
+      <th>購買</th>
     </tr>
   </thead>
 
@@ -21,6 +22,10 @@
       <td><%= course.currency %></td>
       <td><%= course.available_day %></td>
       <td><%= course.desc %></td>
+      <td>
+        <% if current_user %>
+          <%= link_to "購買", user_courses_path(course: course),method: :post, class: "btn btn-primary" %></td>
+        <% end %>
     </tr>
     <% end %>
   </tbody>
