@@ -10,10 +10,32 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_02_21_075317) do
+ActiveRecord::Schema.define(version: 2020_02_21_081934) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "categories", force: :cascade do |t|
+    t.string "name", comment: "類別名稱"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "name", null: false, comment: "主題"
+    t.text "desc", default: "", comment: "描述"
+    t.string "url", comment: "URL"
+    t.string "state", null: false, comment: "狀態"
+    t.integer "price", null: false, comment: "價錢"
+    t.string "currency", null: false, comment: "幣別"
+    t.datetime "available_day", null: false, comment: "使用期限"
+    t.bigint "user_id"
+    t.bigint "category_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["category_id"], name: "index_courses_on_category_id"
+    t.index ["user_id"], name: "index_courses_on_user_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -30,4 +52,6 @@ ActiveRecord::Schema.define(version: 2020_02_21_075317) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "courses", "categories"
+  add_foreign_key "courses", "users"
 end
