@@ -11,9 +11,10 @@ class Course < ApplicationRecord
     usa: "usa",
   }
 
-
   enum state: {
     available: "available",
-    discontinued: "discontinued",
+    discontinued: "discontinued"
   }
+
+
 end

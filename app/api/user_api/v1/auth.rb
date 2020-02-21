@@ -8,7 +8,7 @@ module UserApi
         requires :email, type: String, desc: "電子郵件"
         requires :password, type: String, desc: "密碼"
       end
-      get :login do
+      post :login do
         email  = params['email']
         password  = params['password']
         service = Services::VerifyPassword.new(email, password)
