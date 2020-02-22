@@ -7,12 +7,14 @@ module UserApi
         desc "拿取加油請款訂單(時間倒序排)", success: Entities::UserCourses
         params do
           requires :token, type: String, desc: "憑證"
-          optional :available_course, type: String,  desc: "有效課程"
-          optional :category_id, type: String,  desc: "類別ID"
+          optional :available, type: Boolean,  desc: "有效課程" # true 或 flase
+          optional :category_id, type: Integer,  desc: "類別ID"
         end
         get '/' do
+          available = params['available']
+          category_id = params['category_id']
 
-          service = Services::GetUserCourses.new(current_user)
+          service = Services::UserCourses.new(current_user, available, category_id)
           if service.perform
             present service.scope, with: Entities::UserCourses
           else
@@ -21,26 +23,6 @@ module UserApi
 
         end
       end
-
-      # desc "購買單一課程", success: Entities::UserCourse
-      # params do
-      #   requires :token, type: String, desc: "憑證"
-      #   requires :course_id, type: Integer, desc: "課程ID"
-      # end
-      # post :buy_course do
-      #   # 要改成，錯誤的 Token，請重新登入拿取最新的 Token
-      #   course_id = params['course_id']
-
-      #   # 拿到 user 拿到 course_id 建立 course
-      #   # 上架的才能買
-      #   # 還可使用的課，不可重複購買
-      #   service = Services::BuyCourse.new(current_user, course_id)
-      #   if service.perform
-      #     present :data, service.user_course , with: Entities::BuyCourse
-      #   else
-      #     error! service.error, 422
-      #   end
-      # end
 
     end
   end

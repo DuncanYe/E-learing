@@ -1,5 +1,5 @@
 module UserApi::V1::Services
-  class GetUserCourses
+  class UserCourses
     include Base
     attr_reader :scope
 
@@ -17,24 +17,29 @@ module UserApi::V1::Services
       },
     }.freeze
 
-    def initialize(user)
+    def initialize(user, available, category_id)
+      @user = user
+      @available = available
+      @category_id = category_id
     end
 
     def _perform
-      @scope = UserCourse.all
-    #   check_user_password
-
-    #   true
-    # rescue UserNotFound
-    #   set_error(:user_not_found)
-    #   false
-    # rescue PasswordError
-    #   set_error(:password_error)
-    #   false
+      filter_scope
     end
 
+    def filter_scope
+      scope = @user.user_courses
 
+      if @available
+        scope = scope.available
+      end
 
+      if @category_id
+        scope = scope.where(category_id: @category_id)
+      end
+
+      @scope = scope
+    end
     
   end
 end
