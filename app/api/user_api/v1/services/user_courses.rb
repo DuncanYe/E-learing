@@ -30,8 +30,11 @@ module UserApi::V1::Services
     def filter_scope
       scope = @user.user_courses
 
-      if @available
+        # binding.pry
+      if @available == true
         scope = scope.available
+      elsif @available == false
+        scope = scope.not_available
       end
 
       if @category_id

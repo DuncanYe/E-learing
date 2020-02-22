@@ -7,7 +7,7 @@ module UserApi
         desc "拿取加油請款訂單(時間倒序排)", success: Entities::UserCourses
         params do
           requires :token, type: String, desc: "憑證"
-          optional :available, type: Boolean,  desc: "有效課程" # true 或 flase
+          optional :available, type: Boolean, values: [true, false],  desc: "有效課程"
           optional :category_id, type: Integer,  desc: "類別ID"
         end
         get '/' do
