@@ -23,6 +23,7 @@ RSpec.describe UserApi::V1::BuyCourse, type: :request do
   end
 
   context 'Error Case' do
+    # messing token
     it 'Invalid Token' do
       post "http://localhost:3000/user_api/v1/buy_course",
           {params: {token: '2', course_id: 1}}

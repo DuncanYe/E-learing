@@ -3,17 +3,12 @@ module UserApi::V1::Services
     include Base
     attr_reader :scope
 
-    class UserNotFound < StandardError; end
-    class PasswordError < StandardError; end
+    class CategoryNotFound < StandardError; end
 
     ERRORS = {
-      :user_not_found => {
-        code: 'user_not_found',
-        details: 'User not found'
-      },
-      :password_error => {
-        code: 'password_error',
-        details: 'Password error'
+      :category_not_found => {
+        code: 'category_not_found',
+        details: 'Category not found'
       },
     }.freeze
 
@@ -25,12 +20,15 @@ module UserApi::V1::Services
 
     def _perform
       filter_scope
+      true
+      rescue CategoryNotFound
+      set_error(:category_not_found)
+      false
     end
 
     def filter_scope
       scope = @user.user_courses
 
-        # binding.pry
       if @available == true
         scope = scope.available
       elsif @available == false
@@ -38,7 +36,11 @@ module UserApi::V1::Services
       end
 
       if @category_id
-        scope = scope.where(category_id: @category_id)
+        if !Category.where(id: @category_id).exists?
+          raise CategoryNotFound
+        else
+          scope = scope.where(category_id: @category_id)
+        end
       end
 
       @scope = scope
