@@ -42,10 +42,13 @@ gem 'ffaker', '~> 2.10'
 gem 'rails-i18n'
 gem "pundit"
 gem 'aasm'
+gem 'rspec-rails'
+gem 'timecop'
 
 # api
 gem 'grape', '~> 1.3'
 gem 'grape-entity', '~> 0.8.0'
+
 
 
 # Reduces boot times through caching; required in config/boot.rb

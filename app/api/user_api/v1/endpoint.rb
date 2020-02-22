@@ -5,7 +5,7 @@ module UserApi
 
       desc "測試"
       get :ping do
-        { data: "pong" }
+        { data: Time.current.iso8601 }
         # 可改成時間
       end
 
