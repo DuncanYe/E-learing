@@ -24,7 +24,7 @@
       <td><%= course.state %></td>
       <td><%= course.price %></td>
       <td><%= course.currency %></td>
-      <td><%= course.available_day %></td>
+      <td><%= course.available_day.strftime('%Y-%m-%d %H:%M') %></td>
       <td><%= course.desc %></td>
       <td>
         <%= link_to '編輯', edit_admin_course_path(course), class: "btn btn-xs btn-default" %>

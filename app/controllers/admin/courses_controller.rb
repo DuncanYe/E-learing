@@ -11,6 +11,7 @@ class Admin::CoursesController < Admin::BaseController
   def create
    @course = Course.new(course_params)
     if @course.save
+      available_day_check
       redirect_to admin_courses_path, notice: "新增課程完成"
     else
       flash.now[:error] = @course.errors.full_messages.to_sentence
@@ -26,6 +27,7 @@ class Admin::CoursesController < Admin::BaseController
 
   def update
     if @course.update(course_params)
+      available_day_check
       redirect_to admin_courses_path, notice: "更新課程完成"
     else
       flash.now[:error] = @course.errors.full_messages.to_sentence
@@ -46,6 +48,11 @@ class Admin::CoursesController < Admin::BaseController
   def course_params
     params.require(:course).permit(:name, :price, :currency, :state, :available_day,
                                     :desc, :category_id, :url)
+  end
+
+  def available_day_check
+    @course.available_day = @course.available_day.end_of_day
+    @course.save
   end
 
 end

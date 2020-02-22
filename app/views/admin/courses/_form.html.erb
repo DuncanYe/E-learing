@@ -22,8 +22,8 @@
           <%= f.label :currency, "幣別" %>
           <%= f.select(:currency, options_for_select(Course::currencies, course.currency ), {}, { :class => 'form-control'}) %>        </div>
         <div class="form-group">
-          <%= f.label :available_day, "購買後可用幾天" %>
-          <%= f.text_field :available_day, class: "form-control"%>
+          <%= f.label :available_day, "使用者購買後，可使用至當天的 (23:59:59)" %>
+          <%= f.date_field :available_day, class: "form-control"%>
         </div>
         <div class="form-group">
           <%= f.label :url, "URL" %>
