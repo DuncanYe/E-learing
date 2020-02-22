@@ -11,7 +11,7 @@ module UserApi::V1::Entities
         obj.category.name
       end
       expose :end_at, documentation: {type: "String", desc: "有效日期"} do |obj|
-        obj.end_at.iso8601
+        obj.end_at.strftime('%Y-%m-%d %H:%M')
       end
       expose :state, documentation: {type: "String", desc: "狀態"}
       expose :amount, documentation: {type: "String", desc: "金額"}

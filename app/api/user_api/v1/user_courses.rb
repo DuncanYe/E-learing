@@ -4,10 +4,10 @@ module UserApi
       helpers UserApi::V1::ApiHelper
 
       resources :user_courses do
-        desc "拿取加油請款訂單(時間倒序排)", success: Entities::UserCourses
+        desc "user courses", success: Entities::UserCourses
         params do
           requires :token, type: String, desc: "憑證"
-          optional :available, type: Boolean,  desc: "有效課程" # true 或 flase
+          optional :available, type: Boolean, values: [true, false],  desc: "有效課程"
           optional :category_id, type: Integer,  desc: "類別ID"
         end
         get '/' do
@@ -16,7 +16,7 @@ module UserApi
 
           service = Services::UserCourses.new(current_user, available, category_id)
           if service.perform
-            present service.scope, with: Entities::UserCourses
+            present :data, service.scope, with: Entities::UserCourses
           else
             error! service.error, 422
           end

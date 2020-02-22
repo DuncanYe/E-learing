@@ -92,7 +92,6 @@ module UserApi::V1::Services
       if @user.user_courses.where(course_id: @course.id, state: 'available').exists?
         raise AvailbleCourseExist
       end
-        
       @user.user_courses.build(end_at: @course.available_day, state: "available",
                                amount: @course.price, currency: @course.currency,
                                category_id: @course.category_id,
