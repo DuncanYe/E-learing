@@ -25,3 +25,18 @@ end
 #Default admin
 User.create(email: "root@example.com", password: "111111", role: "admin")
 puts "Default admin create!"
+
+
+price = [100, 200, 300]
+30.times do |i|
+  p = Course.create(
+    name: FFaker::Product.product_name,
+    price: price.sample,
+    currency: Course.currencies.keys.sample,
+    category_id: Category.all.sample.id,
+    state: Course.states.keys.sample,
+    available_day: Time.new+10.day,
+  )
+  puts p.name
+end
+

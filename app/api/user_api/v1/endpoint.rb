@@ -6,10 +6,12 @@ module UserApi
       desc "測試"
       get :ping do
         { data: "pong" }
+        # 可改成時間
       end
 
       mount Auth
       mount BuyCourse
+      mount UserCourses
 
 
       route :any, '*path' do

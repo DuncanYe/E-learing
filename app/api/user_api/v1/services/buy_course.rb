@@ -89,11 +89,11 @@ module UserApi::V1::Services
         raise CourseIsDiscontinued
       end
 
-      if @user.user_courses.where(course_id: @course.id, state: 'vailable').exists?
+      if @user.user_courses.where(course_id: @course.id, state: 'available').exists?
         raise AvailbleCourseExist
       end
         
-      @user.user_courses.build(end_at: @course.available_day, state: "vailable",
+      @user.user_courses.build(end_at: @course.available_day, state: "available",
                                amount: @course.price, currency: @course.currency,
                                category_id: @course.category_id,
                                course_id: @course.id)

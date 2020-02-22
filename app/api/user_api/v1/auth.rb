@@ -20,7 +20,7 @@ module UserApi
         end
       end
 
-      # 如果 logout 就把 token 重新製作
+      # 如果 logout 就把 token 重新製作，或是單純重置 token 也行
 
     end
   end
