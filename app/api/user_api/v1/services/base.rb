@@ -23,7 +23,7 @@ module UserApi::V1::Services::Base
   def build_error(code, attrs = {}, variables = {})
     err = self.class::ERRORS[code].dup
     err[:details] = err[:details] % attrs
-    err[:message] = I18n.t(err[:code], default: err[:details], scope: [:user_api, :v3, :errors], **variables) % attrs
+    err[:message] = I18n.t(err[:code], default: err[:details], scope: [:user_api, :v1, :errors], **variables) % attrs
     err
   end
 
