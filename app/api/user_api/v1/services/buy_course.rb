@@ -86,6 +86,8 @@ module UserApi::V1::Services
                         user_course: @user_course,
                         amount: @user_course.amount)
 
+      # 目前一次只會購買一個課程，可以不用 OrderItem 做紀錄
+
       unless order.save
         raise FaildToBuildCourse
       end
