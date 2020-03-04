@@ -67,6 +67,7 @@ module UserApi::V1::Services
 
       ActiveRecord::Base.transaction do
         @user_course = build_user_course
+        pay_and_create_order
 
         if @user_course.save
           # send email to user
@@ -76,7 +77,6 @@ module UserApi::V1::Services
           raise FaildToBuildCourse
         end
 
-        pay_and_create_order
       end
 
     end
