@@ -18,7 +18,8 @@ RSpec.describe UserApi::V1::BuyCourse, type: :request do
       expect(response).to be_successful
       expect(result["data"]).to eq("amount"=>course.price, "category"=> course.category.name, "course_id"=> course.id,
                                    "currency"=> course.currency, "end_at"=>course.available_day.strftime('%Y-%m-%d %H:%M'),
-                                   "state"=>"available")
+                                   "state"=>"available",
+                                   "order"=>{ "id"=> user.orders.first.id, "amount" => user.orders.first.amount, "user_course_name" => course.name})
     end
   end
 

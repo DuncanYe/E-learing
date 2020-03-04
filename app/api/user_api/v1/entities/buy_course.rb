@@ -10,6 +10,6 @@ module UserApi::V1::Entities
     expose :category, documentation: {type: "String", desc: "種類名稱"} do |obj|
        obj.category.name
     end
-
+    expose :order, using: Order, documentation: {type: "Integer", desc: "訂單資訊"}
   end
 end

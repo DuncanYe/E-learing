@@ -17,11 +17,17 @@ RSpec.describe UserApi::V1::UserCourses, type: :request do
                                               category_id: course_1.category_id,
                                               course_id: course_1.id)
   }
+  let!(:order_1){ Order.create(user: user,
+                               user_course: user_course_1,
+                               amount: user_course_1.amount)}
   let!(:user_course_2){ user.user_courses.create(end_at: course_2.available_day, state: "discontinued",
                                               amount: course_2.price, currency: course_2.currency,
                                               category_id: course_2.category_id,
                                               course_id: course_2.id)
   }
+  let!(:order_2){ Order.create(user: user,
+                               user_course: user_course_2,
+                               amount: user_course_2.amount)}
   context 'success' do
     before do
        Timecop.freeze Time.current

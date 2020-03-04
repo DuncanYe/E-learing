@@ -64,17 +64,30 @@ module UserApi::V1::Services
         raise InvalidToken
       end
 
-      @user_course = build_user_course
 
       ActiveRecord::Base.transaction do
+        @user_course = build_user_course
+
         if @user_course.save
           # send email to user
-          # 金流付款
           @user_course
         else
           # 噴 Slack 通知無法建立
           raise FaildToBuildCourse
         end
+
+        pay_and_create_order
+      end
+
+    end
+
+    def pay_and_create_order
+      order = Order.new(user: @user,
+                        user_course: @user_course,
+                        amount: @user_course.amount)
+
+      unless order.save
+        raise FaildToBuildCourse
       end
 
     end

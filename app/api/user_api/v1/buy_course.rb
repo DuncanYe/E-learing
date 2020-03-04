@@ -9,12 +9,8 @@ module UserApi
         requires :course_id, type: Integer, desc: "課程ID"
       end
       post :buy_course do
-        # 要改成，錯誤的 Token，請重新登入拿取最新的 Token
         course_id = params['course_id']
 
-        # 拿到 user 拿到 course_id 建立 course
-        # 上架的才能買
-        # 還可使用的課，不可重複購買
         service = Services::BuyCourse.new(current_user, course_id)
         if service.perform
           present :data, service.user_course , with: Entities::BuyCourse
