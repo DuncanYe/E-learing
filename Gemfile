@@ -42,7 +42,6 @@ gem 'ffaker', '~> 2.10'
 gem 'rails-i18n'
 gem "pundit"
 gem 'aasm'
-gem 'rspec-rails'
 gem 'timecop'
 
 # api
@@ -58,6 +57,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem 'pry'
+  gem 'rspec-rails'
 end
 
 group :development do
