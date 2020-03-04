@@ -16,5 +16,6 @@ module UserApi::V1::Entities
       expose :state, documentation: {type: "String", desc: "狀態"}
       expose :amount, documentation: {type: "String", desc: "金額"}
       expose :currency, documentation: {type: "String", desc: "幣別"}
+      expose :order, using: Order, documentation: {type: "Integer", desc: "訂單資訊"}
     end
 end
