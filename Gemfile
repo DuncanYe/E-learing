@@ -43,6 +43,7 @@ gem 'rails-i18n'
 gem "pundit"
 gem 'aasm'
 gem 'timecop'
+gem 'cancancan'
 
 # api
 gem 'grape', '~> 1.3'

@@ -1,5 +1,6 @@
 class Admin::CoursesController < Admin::BaseController
   before_action :set_course
+  load_and_authorize_resource
 
   def index
     @courses = Course.all.includes(:category)
